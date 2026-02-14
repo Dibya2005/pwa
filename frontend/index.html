@@ -1,10 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Expense Tracker PWA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expense Tracker</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Expense Tracker PWA</h1>
-  <p>App is running.</p>
+
+<div class="container">
+  <h1>💰 Expense Tracker</h1>
+
+  <div class="summary">
+    <div>Income: ₹<span id="income">0</span></div>
+    <div>Expense: ₹<span id="expense">0</span></div>
+    <div class="profit">Profit: ₹<span id="profit">0</span></div>
+  </div>
+
+  <form id="form">
+    <select id="type">
+      <option value="income">Income</option>
+      <option value="expense">Expense</option>
+    </select>
+    <input id="amount" type="number" placeholder="Amount" required />
+    <input id="note" placeholder="Note" />
+    <button>Add</button>
+  </form>
+
+  <ul id="list"></ul>
+</div>
+
+<script src="app.js"></script>
 </body>
 </html>

@@ -1,19 +1,60 @@
 body {
   font-family: Arial;
-  text-align: center;
-  background: #f2f2f2;
-  padding: 20px;
+  background: #f4f6f8;
+  display: flex;
+  justify-content: center;
+  margin: 0;
 }
 
-input, button {
-  padding: 10px;
-  margin: 5px;
+.container {
+  background: white;
+  padding: 20px;
+  margin-top: 40px;
+  border-radius: 12px;
+  width: 320px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+h1 {
+  text-align: center;
+}
+
+.summary {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 0;
+  font-weight: bold;
+}
+
+.profit {
+  color: green;
+}
+
+form {
+  display: flex;
+  gap: 5px;
+}
+
+input, select, button {
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+button {
+  background: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 15px;
 }
 
 li {
-  list-style: none;
-  background: #fff;
-  margin: 10px;
-  padding: 10px;
-  border-radius: 8px;
+  padding: 8px;
+  border-bottom: 1px solid #eee;
 }

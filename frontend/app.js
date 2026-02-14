@@ -1,41 +1,41 @@
-const form = document.getElementById("expense-form");
+const API = "http://localhost:5000";
+
 const list = document.getElementById("list");
-const balanceEl = document.getElementById("balance");
+const incomeEl = document.getElementById("income");
+const expenseEl = document.getElementById("expense");
+const profitEl = document.getElementById("profit");
 
-let API = "http://localhost/backend";
+async function load() {
+  const txRes = await fetch(API + "/transactions");
+  const tx = await txRes.json();
 
-form.addEventListener("submit", async e => {
-  e.preventDefault();
+  list.innerHTML = tx.map(t =>
+    `<li>${t.note} - ₹${t.amount} (${t.type})</li>`
+  ).join("");
 
-  const titleVal = document.getElementById("title").value;
-  const amountVal = document.getElementById("amount").value;
+  const sumRes = await fetch(API + "/summary");
+  const sum = await sumRes.json();
 
-  await fetch(API + "/add.php", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ title: titleVal, amount: amountVal })
-  });
-
-  form.reset();
-  loadExpenses();
-});
-
-async function loadExpenses() {
-  const res = await fetch(API + "/get.php");
-  const data = await res.json();
-
-  list.innerHTML = "";
-  let balance = 0;
-
-  data.forEach(e => {
-    balance += Number(e.amount);
-
-    const li = document.createElement("li");
-    li.textContent = `${e.title}: ₹${e.amount}`;
-    list.appendChild(li);
-  });
-
-  balanceEl.textContent = balance;
+  incomeEl.textContent = sum.income;
+  expenseEl.textContent = sum.expense;
+  profitEl.textContent = sum.profit;
 }
 
-loadExpenses();
+document.getElementById("form").onsubmit = async e => {
+  e.preventDefault();
+
+  await fetch(API + "/transactions", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      type: type.value,
+      amount: amount.value,
+      note: note.value
+    })
+  });
+
+  e.target.reset();
+  load();
+};
+
+load();
